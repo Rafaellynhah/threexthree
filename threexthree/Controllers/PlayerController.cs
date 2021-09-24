@@ -43,7 +43,7 @@ namespace threexthree.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> List() => Ok(await _context.Players.Include(t => t.Team).Include(c => c.Championship).ToListAsync());
+        public async Task<IActionResult> List() => Ok(await _context.Players.Include(t => t.Team).Include(c => c.Team.Championship).ToListAsync());
 
         [HttpGet]
         [Route("getbyteam/{id}")]
