@@ -75,7 +75,7 @@ namespace threexthree.Controllers
             return StatusCode(204);
         }
 
-        public bool ChampionshipExists(Championship championship) =>  _context.Championships.Any(c => c.Name == championship.Name);
-        public bool ChampionshipExistsById(Championship championship) =>  _context.Championships.Any(c => c.Id == championship.Id);
+        private bool ChampionshipExists(Championship championship) =>  _context.Championships.Any(c => c.Name == championship.Name);
+        private bool ChampionshipExistsById(Championship championship) =>  _context.Championships.Any(c => c.Id == championship.Id);
     }
 }

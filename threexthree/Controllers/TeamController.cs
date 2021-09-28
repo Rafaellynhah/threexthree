@@ -42,8 +42,7 @@ namespace threexthree.Controllers
         [HttpGet]
         public async Task<IActionResult> List() => Ok(await _context.Teams.Include(c => c.Championship).ToListAsync());
 
-        [HttpGet]
-        [Route("bychampionship/{id}")]
+        [HttpGet("bychampionship/{id}")]
         public async Task<IActionResult> GetByChampionship([FromRoute] int id) 
         {
             return Ok(await _context.Teams.Include(c => c.Championship).Where(x => x.Championship.Id == id).ToListAsync());
