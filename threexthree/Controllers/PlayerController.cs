@@ -55,7 +55,7 @@ namespace threexthree.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById([FromRoute] int id)
         {
-            Player player = await _context.Players.FindAsync(id);
+            Player player = await _context.Players.Include(t => t.Team).Include(c => c.Team.Championship).FirstOrDefaultAsync(p => p.Id == id);
             if (player == null)
             {
                 return StatusCode(404);

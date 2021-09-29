@@ -52,7 +52,7 @@ namespace threexthree.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById([FromRoute] int id)
         {
-            Team team = await _context.Teams.FindAsync(id);
+            Team team = await _context.Teams.Include(c => c.Championship).FirstOrDefaultAsync(t => t.Id == id);
             if (team == null)
             {
                 return StatusCode(404);
