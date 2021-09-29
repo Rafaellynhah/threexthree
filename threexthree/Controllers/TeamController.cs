@@ -63,11 +63,16 @@ namespace threexthree.Controllers
 
         [HttpPut]
         public async Task<IActionResult> Update([FromBody] Team team)
-        {
+        {   
+            Championship championship = await _context.Championships.FindAsync(team.Championship.Id);
+            if (championship == null)
+            {
+                return StatusCode(404);
+            }
             if (!TeamExistsById(team)){
                 return StatusCode(400);
             }
-
+            team.Championship = championship;
             _context.Teams.Update(team);
             await _context.SaveChangesAsync();
 
