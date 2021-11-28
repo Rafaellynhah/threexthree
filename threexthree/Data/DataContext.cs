@@ -11,6 +11,8 @@ namespace threexthree.Data
         public DbSet<Championship> Championships { get; set; }
         public DbSet<Team> Teams { get; set; }
         public DbSet<Player> Players { get; set; }
+        public DbSet<TypeKey> TypeKeys { get; set; }
+        public DbSet<Key> Keys { get; set; }
     }
 }
 

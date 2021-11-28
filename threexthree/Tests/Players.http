@@ -1,0 +1,15 @@
+###POST
+POST https://localhost:5001/v1/player
+Content-Type: application/json
+
+{
+    "Name" : "Curry",
+    "Cpf": "00000000000",
+    "Jersey": 1, 
+    "Team": {
+    "id": 1
+  }
+}
+
+###LIST
+GET https://localhost:5001/v1/player

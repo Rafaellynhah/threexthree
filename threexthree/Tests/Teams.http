@@ -1,0 +1,13 @@
+###POST
+POST https://localhost:5001/v1/team
+Content-Type: application/json
+
+{
+    "Name" : "GSW",
+    "Championship": {
+    "id": 1
+  }
+}
+
+###LIST
+GET https://localhost:5001/v1/team

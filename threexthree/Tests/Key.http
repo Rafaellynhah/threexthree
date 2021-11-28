@@ -1,0 +1,11 @@
+###POST
+POST https://localhost:5001/v1/key
+Content-Type: application/json
+
+{
+    "Name" : "Interpraças",
+    "Description": "Copa Verão"
+}
+
+###LIST
+GET https://localhost:5001/v1/key
