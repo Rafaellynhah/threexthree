@@ -25,5 +25,32 @@ namespace threexthree.Controllers
             .Include(t => t.Teams)
             .ToListAsync());  
         } 
+
+        public void GenerateKeys(int id){
+           int aux=0;
+
+           var teams = _context.Teams.Where(c => c.Championship.Id == id).ToList();
+           var typekey = _context.TypeKeys.First();
+
+           var shortteams = teams.OrderBy(t => Guid.NewGuid()).ToList();
+           int qtdteams = teams.Count();
+           int qtdteamstokey = qtdteams / typekey.QuantityKey;
+
+           for (int i = 1; i <= typekey.QuantityKey; i++){
+
+                Key key = new Key(); 
+                List<Team> team_list = new List<Team>();
+                for (int c = 1; c <= qtdteamstokey; c++){
+                    team_list.Add(shortteams[aux]);
+                    aux += 1;
+                }
+                key.Name = "Key " + i;
+                key.Teams = team_list;
+    
+                _context.Keys.Add(key);
+                _context.SaveChanges();         
+           }
+            
+        }
     }
 }
