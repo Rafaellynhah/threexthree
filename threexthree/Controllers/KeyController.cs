@@ -27,10 +27,14 @@ namespace threexthree.Controllers
             .ToListAsync());  
         } 
 
-        [HttpGet("generate")]
-        public async Task<IActionResult> KeysGenerateList(){
-            GenerateKeys();
-            return Ok(await _context.Keys.ToListAsync());
+        [HttpPost]
+        public IActionResult Create([FromBody] string key) {
+            if (key == "create"){
+                GenerateKeys();
+                return StatusCode(201);
+            }
+            return StatusCode(404);
+           
         } 
 
         private void GenerateKeys(){

@@ -1,5 +1,9 @@
-###GENERATE-LIST
-GET https://localhost:5001/v1/key/generate
+###CREATE
+POST https://localhost:5001/v1/key
+Content-Type: application/json
+
+"create"
+
 
 ###LIST
 GET https://localhost:5001/v1/key

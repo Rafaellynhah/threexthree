@@ -29,11 +29,15 @@ namespace threexthree.Controllers
             .ToListAsync());
         } 
 
-        [HttpGet("generate")]
-        public async Task<IActionResult> GamesGenerateList(){
-            GenerateGames();
-            return Ok(await _context.Games.ToListAsync());
-        } 
+        [HttpPost]
+        public IActionResult Create([FromBody] string game) {
+            if (key == "create"){
+                GenerateGames();
+                return StatusCode(201);
+            }
+            return StatusCode(404);
+           
+        }
         
         [HttpPut]
         public async Task<IActionResult> Update([FromBody] Game game)
