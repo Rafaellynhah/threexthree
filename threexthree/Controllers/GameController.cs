@@ -31,7 +31,7 @@ namespace threexthree.Controllers
 
         [HttpPost]
         public IActionResult Create([FromBody] string game) {
-            if (key == "create"){
+            if (game == "create"){
                 GenerateGames();
                 return StatusCode(201);
             }
