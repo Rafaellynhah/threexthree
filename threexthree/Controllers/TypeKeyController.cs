@@ -38,7 +38,7 @@ namespace threexthree.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> List() => Ok(await _context.TypeKeys.ToListAsync());
+        public async Task<IActionResult> List() => Ok(await _context.TypeKeys.Include(c => c.Championship).ToListAsync());
 
         [HttpPut]
         public async Task<IActionResult> Update([FromBody] TypeKey typekey)

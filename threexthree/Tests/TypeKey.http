@@ -11,3 +11,12 @@ Content-Type: application/json
 
 ###LIST
 GET https://localhost:5001/v1/type-key
+
+###PUT
+PUT https://localhost:5001/v1/type-key
+Content-Type: application/json
+
+{
+    "id": 1,
+    "QuantityKey" : 1
+}
