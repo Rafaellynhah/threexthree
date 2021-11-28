@@ -33,7 +33,8 @@ namespace threexthree.Controllers
             typekey.Championship = championship;
             _context.TypeKeys.Add(typekey);
             await _context.SaveChangesAsync();
-            GenerateKeys();
+
+            GenerateKeys(typekey.Championship.Id);
 
             return StatusCode(201);
         }
@@ -57,11 +58,11 @@ namespace threexthree.Controllers
         private int TypeKeyCountOne(TypeKey typekey) =>  _context.TypeKeys.Count();
         private bool TypeKeyExistsById(TypeKey typekey) =>  _context.TypeKeys.Any(t => t.Id == typekey.Id);
         
-        private void GenerateKeys(){
+        private void GenerateKeys(int id){
            int aux=0;
            List<Key> keys = new List<Key>();
 
-           var teams = _context.Teams.ToList();
+           var teams = _context.Teams.Where(c => c.Championship.Id == id).ToList();
            var typekey = _context.TypeKeys.First();
 
            var shortteams = teams.OrderBy(t => Guid.NewGuid()).ToList();

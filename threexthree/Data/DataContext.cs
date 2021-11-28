@@ -13,6 +13,7 @@ namespace threexthree.Data
         public DbSet<Player> Players { get; set; }
         public DbSet<TypeKey> TypeKeys { get; set; }
         public DbSet<Key> Keys { get; set; }
+        public DbSet<Game> Games { get; set; }
     }
 }
 

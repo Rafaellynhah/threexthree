@@ -1,0 +1,18 @@
+###GENERATE-LIST
+GET https://localhost:5001/v1/game/generate
+
+###LIST
+GET https://localhost:5001/v1/game
+
+###UPDATE
+PUT https://localhost:5001/v1/game
+Content-Type: application/json
+
+{
+    "id": 1,
+    "place": "Ney Braga",
+    "address": "Sete de setembro, 2024",
+    "dataHour": "10-12-2021 15:30:00",
+    "ScoreOneTeam": 110,
+    "ScoreTwoTeam": 98 
+}
