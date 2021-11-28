@@ -1,2 +1,5 @@
+###GENERATE-LIST
+GET https://localhost:5001/v1/key/generate
+
 ###LIST
 GET https://localhost:5001/v1/key

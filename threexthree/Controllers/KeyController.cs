@@ -23,15 +23,22 @@ namespace threexthree.Controllers
         public async Task<IActionResult> List(){
           return Ok(await _context.Keys
             .Include(t => t.Teams)
+            .ThenInclude(c => c.Championship)
             .ToListAsync());  
         } 
 
-        public void GenerateKeys(int id){
+        [HttpGet("generate")]
+        public async Task<IActionResult> KeysGenerateList(){
+            GenerateKeys();
+            return Ok(await _context.Keys.ToListAsync());
+        } 
+
+        private void GenerateKeys(){
            int aux=0;
 
-           var teams = _context.Teams.Where(c => c.Championship.Id == id).ToList();
-           var typekey = _context.TypeKeys.First();
-
+           var typekey = _context.TypeKeys.Include(c => c.Championship).First();
+           var teams = _context.Teams.Where(c => c.Championship.Id == typekey.Championship.Id).ToList();
+           
            var shortteams = teams.OrderBy(t => Guid.NewGuid()).ToList();
            int qtdteams = teams.Count();
            int qtdteamstokey = qtdteams / typekey.QuantityKey;

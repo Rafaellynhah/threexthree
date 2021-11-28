@@ -34,16 +34,26 @@ namespace threexthree.Controllers
             _context.TypeKeys.Add(typekey);
             await _context.SaveChangesAsync();
 
-            KeyController keycontroller = new KeyController(_context);
-            keycontroller.GenerateKeys(typekey.Championship.Id);
-
             return StatusCode(201);
         }
 
         [HttpGet]
         public async Task<IActionResult> List() => Ok(await _context.TypeKeys.ToListAsync());
 
+        [HttpPut]
+        public async Task<IActionResult> Update([FromBody] TypeKey typekey)
+        {
+            if (!TypeKeyExistsById(typekey)){
+                return StatusCode(400);
+            }
+            _context.TypeKeys.Update(typekey);
+            await _context.SaveChangesAsync();
+
+            return StatusCode(204);
+        }
+
         private int TypeKeyCountOne(TypeKey typekey) =>  _context.TypeKeys.Count();
+        private bool TypeKeyExistsById(TypeKey typekey) =>  _context.TypeKeys.Any(t => t.Id == typekey.Id);
         
     }
 }
