@@ -55,6 +55,9 @@ namespace threexthree.Controllers
                     team_list.Add(shortteams[aux]);
                     aux += 1;
                 }
+                if(aux == (qtdteams - 1) && ((qtdteams / typekey.QuantityKey) %1) == 0){
+                    team_list.Add(shortteams[aux]);
+                }
                 key.Name = "Key " + i;
                 key.Teams = team_list;
     
